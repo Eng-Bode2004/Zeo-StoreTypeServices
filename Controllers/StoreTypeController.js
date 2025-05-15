@@ -1,4 +1,5 @@
 const StoreTypeService = require("../services/StoreTypeServices");
+const StoreTypeModel = require("../Models/StoreType");
 
 class StoreTypeController {
     async createStoreType(req, res) {
@@ -43,6 +44,52 @@ class StoreTypeController {
                 error: error.message
             })
         }
+    }
+
+    async assignCategory(req, res) {
+        const { storeTypeId } = req.params;
+        const { categoryId } = req.body;
+        if (!categoryId) {
+            res.status(400).send({
+                status: 'Failed',
+                message: 'Please enter categoryId Required!'
+            })
+        }
+
+        if (!storeTypeId) {
+            res.status(400).send({
+                status: 'Failed',
+                message: 'Please enter storeTypeId Required!'
+            })
+        }
+        try {
+            const updated = await StoreTypeService.assignCategory(storeTypeId, categoryId);
+            res.status(200).send({
+                status: "Success",
+                message: "Category assigned to store type",
+                data: updated
+            });
+        } catch (error) {
+            res.status(400).send({
+                status: "Failed",
+                message: error.message
+            });
+        }
+    }
+
+    async getAllCategories(req,res) {
+        const { storeTypeId } = req.params;
+        if (!storeTypeId) {
+            res.status(400).send({
+                status: 'Failed',
+                message: 'Please enter storeTypeId Required!'
+            })
+        }
+        const Categories = await StoreTypeService.getAllCategories(storeTypeId);
+        res.status(200).send({
+            status: 'Success',
+            Data: Categories
+        })
     }
 
 

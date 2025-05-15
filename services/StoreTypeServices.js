@@ -31,6 +31,28 @@ class StoreTypeService {
     }
 
 
+    async assignCategory(storeTypeId, categoryId) {
+        if (!categoryId) {
+            return Promise.reject(new Error("Please enter categoryId Required!"));
+        }
+
+        if (!storeTypeId) {
+            return Promise.reject(new Error("Please enter storeTypeId Required!"));
+        }
+        return StoreTypeModel.findByIdAndUpdate(storeTypeId,{$push: {categories:categoryId}}, {new: true});
+    }
+
+    async getAllCategories(storeTypeId) {
+        if (!storeTypeId) {
+            return Promise.reject(new Error("Please enter storeTypeId Required!"));
+        }
+        return StoreTypeModel.findById(storeTypeId).select('categories');
+    }
+
+
+
+
+
 }
 
 

@@ -16,6 +16,11 @@ const StoreType = mongoose.Schema({
         type: String,
     },
 
+    categories: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Category',
+    }]
+
 },{timestamps: true});
 
 module.exports = mongoose.model("StoreType", StoreType);
