@@ -18,4 +18,4 @@ const StoreType = mongoose.Schema({
 
 },{timestamps: true});
 
-module.exports = mongoose.model("ShopType", StoreType);
+module.exports = mongoose.model("StoreType", StoreType);
