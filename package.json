@@ -1,0 +1,24 @@
+{
+  "name": "storetypeservices",
+  "version": "1.0.0",
+  "description": "Store Type Services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eng-Bode2004/Zeo-StoreTypeServices.git"
+  },
+  "author": "Abdelrahman Ashraf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eng-Bode2004/Zeo-StoreTypeServices/issues"
+  },
+  "homepage": "https://github.com/Eng-Bode2004/Zeo-StoreTypeServices#readme",
+  "dependencies": {
+    "config": "^3.3.12",
+    "mongoose": "^8.14.2"
+  }
+}
