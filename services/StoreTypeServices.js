@@ -1,4 +1,4 @@
-const StoreTypeModel = require("../models/StoreType");
+const StoreTypeModel = require("../Models/StoreType");
 const mongoose = require('mongoose');
 
 class StoreTypeService {
