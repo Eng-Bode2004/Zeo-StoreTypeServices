@@ -1,7 +1,7 @@
-const ShopTypeService = require("../services/ShopTypeServices");
+const StoreTypeService = require("../services/StoreTypeServices");
 
 class StoreTypeController {
-    async createShopType(req, res) {
+    async createStoreType(req, res) {
         try {
             const {name, description, icon} = req.body;
             if(!name || !description || !icon) {
@@ -11,7 +11,7 @@ class StoreTypeController {
                 });
             }
             const shopTypeData = {name, description, icon};
-            const newShopType = await ShopTypeService.createShopType(shopTypeData);
+            const newShopType = await StoreTypeService.createStoreType(shopTypeData);
             res.status(200).send({
                 status: 'Success',
                 message: 'Shop Type created successfully!',
@@ -28,71 +28,18 @@ class StoreTypeController {
     }
 
 
-    async getAllShopTypes(req, res) {
+    async getAllStoreTypes(req, res) {
         try {
-            const shopTypes = await ShopTypeService.getAllShopTypes();
+            const storeTypes = await StoreTypeService.getAllStoreTypes();
             res.status(200).send({
                 status: 'Success',
                 message: 'Shop Type list successfully!',
-                ShopTypes: shopTypes,
+                StoreTypes: storeTypes,
             })
         }
         catch (error){
             res.status(400).send({
                 status: 'Failed',
-                error: error.message
-            })
-        }
-    }
-
-    async getAllShopsApprovedInCategory(req, res) {
-        try {
-
-            const {shopTypeId} = req.params;
-            if(!shopTypeId){
-                res.status(400).send({
-                    status: 'Failed',
-                    message: 'Please enter All Fields Required!'
-                })
-            }
-            const Shops = await ShopTypeService.getAllShopsApprovedInCategory(shopTypeId);
-            res.status(200).send({
-                status: 'Success',
-                message: 'Shop Type list successfully!',
-                Shops: Shops,
-            })
-        }
-        catch (error){
-            res.status(400).send({
-                status: 'Failed',
-                message: 'Error getting All Shops in Category!',
-                error: error.message
-            })
-        }
-    }
-
-
-    async getAllShopsNonApprovedInCategory(req, res) {
-        try {
-
-            const {shopTypeId} = req.params;
-            if(!shopTypeId){
-                res.status(400).send({
-                    status: 'Failed',
-                    message: 'Please enter All Fields Required!'
-                })
-            }
-            const Shops = await ShopTypeService.getAllShopsNonApprovedInCategory(shopTypeId);
-            res.status(200).send({
-                status: 'Success',
-                message: 'Shop Type list successfully!',
-                Shops: Shops,
-            })
-        }
-        catch (error){
-            res.status(400).send({
-                status: 'Failed',
-                message: 'Error getting All Shops in Category!',
                 error: error.message
             })
         }
